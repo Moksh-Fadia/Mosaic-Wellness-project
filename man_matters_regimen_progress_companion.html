@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Man Matters — Regimen & Progress Companion</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            bg: '#0b1329',
+                            card: '#131e3a',
+                            accent: '#00d2ff',
+                            emerald: '#10b981',
+                            sub: '#1c2a4f',
+                            border: '#2a3b68'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0b1329;
+            color: #f8fafc;
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom scrollbars */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0b1329;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2a3b68;
+            border-radius: 9999px;
+        }
+        /* Image Compare Slider CSS */
+        .img-slider-container {
+            position: relative;
+            overflow: hidden;
+            user-select: none;
+        }
+        .img-slider-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-cyan-500 selection:text-slate-900">
+
+    <!-- TOP BAR / HEADER -->
+    <header class="bg-brand-card/90 backdrop-blur-md border-b border-brand-border sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            
+            <!-- Brand Logo & Badge -->
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/20 font-black text-xl text-slate-900 tracking-tighter">
+                    MM
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="font-extrabold text-lg text-white tracking-wide">MAN MATTERS</span>
+                        <span class="bg-cyan-500/10 text-cyan-400 text-[10px] font-bold px-2 py-0.5 rounded-full border border-cyan-500/20">REGIMEN+</span>
+                    </div>
+                    <p class="text-xs text-slate-400 hidden sm:block">90-Day Hair Restoration Companion</p>
+                </div>
+            </div>
+
+            <!-- Stats & Navigation -->
+            <div class="flex items-center gap-3 sm:gap-6">
+                <!-- Streak Badge -->
+                <div class="flex items-center gap-2 bg-brand-sub/80 border border-amber-500/30 px-3 py-1.5 rounded-full shadow-inner">
+                    <span class="animate-bounce">🔥</span>
+                    <div class="text-xs">
+                        <span class="text-slate-400 font-medium hidden sm:inline">Streak: </span>
+                        <span id="streakDays" class="text-amber-400 font-bold">14 Days</span>
+                    </div>
+                </div>
+
+                <!-- Adherence Gauge Button -->
+                <div class="hidden md:flex items-center gap-2 bg-brand-sub/80 border border-emerald-500/30 px-3 py-1.5 rounded-full">
+                    <i class="fa-solid fa-chart-line text-emerald-400 text-xs"></i>
+                    <span class="text-xs text-slate-300 font-medium">Adherence: <strong id="adherenceScore" class="text-emerald-400 font-bold">93%</strong></span>
+                </div>
+
+                <!-- User Profile Dropdown Simulator -->
+                <div class="flex items-center gap-2 pl-2 border-l border-brand-border">
+                    <div class="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 flex items-center justify-center font-bold text-xs text-white border border-slate-700">
+                        RJ
+                    </div>
+                    <span class="text-xs font-semibold text-slate-300 hidden sm:inline">Rudra J.</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN BODY -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full flex-grow space-y-8">
+
+        <!-- HERO PROBLEM CONTEXT BANNER -->
+        <section class="relative bg-gradient-to-r from-brand-card via-brand-sub to-slate-900 border border-brand-border rounded-2xl p-6 md:p-8 overflow-hidden shadow-2xl">
+            <div class="absolute -right-12 -bottom-12 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+                <div class="space-y-2 max-w-3xl">
+                    <div class="inline-flex items-center gap-2 bg-cyan-500/10 text-cyan-400 text-xs font-semibold px-3 py-1 rounded-full border border-cyan-500/20">
+                        <i class="fa-solid fa-seedling text-xs"></i> Hair Growth Takes 90–180 Days
+                    </div>
+                    <h1 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+                        Trust the Process. We Track the Invisible Micro-Growth.
+                    </h1>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        Topical hair serums and gummies act beneath the scalp before visible thickness shows. Log your daily doses, scan your scalp density monthly, and keep your streak alive.
+                    </p>
+                </div>
+                <div class="flex items-center gap-3 w-full lg:w-auto">
+                    <button onclick="scrollToSection('routine-tracker')" class="flex-1 lg:flex-none bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-bold px-5 py-3 rounded-xl transition-all shadow-lg shadow-cyan-500/20 flex items-center justify-center gap-2 text-sm">
+                        <i class="fa-solid fa-check-circle text-base"></i> Log Today's Dose
+                    </button>
+                    <button onclick="scrollToSection('ai-scanner')" class="flex-1 lg:flex-none bg-brand-sub hover:bg-slate-800 border border-brand-border text-slate-200 font-semibold px-5 py-3 rounded-xl transition-all flex items-center justify-center gap-2 text-sm">
+                        <i class="fa-solid fa-camera text-cyan-400"></i> Scalp Scan
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- NAVIGATION TABS -->
+        <nav class="flex items-center gap-2 overflow-x-auto pb-2 border-b border-brand-border scrollbar-none">
+            <button onclick="switchTab('routine')" id="tab-routine" class="tab-btn active px-4 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap transition-all flex items-center gap-2 bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">
+                <i class="fa-solid fa-calendar-check text-xs"></i> 1. Daily Routine Engine
+            </button>
+            <button onclick="switchTab('timeline')" id="tab-timeline" class="tab-btn px-4 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap transition-all flex items-center gap-2 text-slate-400 hover:text-white hover:bg-brand-card">
+                <i class="fa-solid fa-sliders text-xs"></i> 2. Visual Progress & AI Scanner
+            </button>
+            <button onclick="switchTab('reminders')" id="tab-reminders" class="tab-btn px-4 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap transition-all flex items-center gap-2 text-slate-400 hover:text-white hover:bg-brand-card">
+                <i class="fa-solid fa-bell text-xs"></i> 3. Smart Nudge Scheduler
+            </button>
+            <button onclick="switchTab('support')" id="tab-support" class="tab-btn px-4 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap transition-all flex items-center gap-2 text-slate-400 hover:text-white hover:bg-brand-card">
+                <i class="fa-solid fa-user-doctor text-xs"></i> 4. Doctor Guidance & FAQ
+            </button>
+        </nav>
+
+        <!-- SECTION 1: DAILY ROUTINE TRACKER -->
+        <section id="section-routine" class="tab-content space-y-6">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                
+                <!-- AM Routine Card -->
+                <div class="bg-brand-card border border-brand-border rounded-2xl p-6 shadow-lg flex flex-col justify-between relative overflow-hidden">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center font-bold">
+                                    <i class="fa-solid fa-sun text-lg"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-white text-base">Morning Regimen</h3>
+                                    <p class="text-xs text-slate-400">Targeted Scalp Application</p>
+                                </div>
+                            </div>
+                            <span class="text-xs bg-slate-800 text-slate-400 px-2.5 py-1 rounded-full border border-slate-700">8:00 AM</span>
+                        </div>
+
+                        <div class="bg-brand-sub/60 border border-brand-border/60 rounded-xl p-4 space-y-3">
+                            <div class="flex items-start justify-between gap-3">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center">
+                                        <i class="fa-solid fa-prescription-bottle-droplet text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-semibold text-sm text-slate-100">Man Matters Hair Tonic</div>
+                                        <div class="text-xs text-slate-400">1ml (5–6 Sprays) on affected scalp areas</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-[11px] text-slate-400 bg-slate-900/50 p-2 rounded-lg border border-slate-800 flex items-center gap-2">
+                                <i class="fa-solid fa-circle-info text-cyan-400"></i> Apply directly on clean, dry scalp. Massage gently for 1 min.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 pt-4 border-t border-brand-border flex items-center justify-between">
+                        <span id="amStatusText" class="text-xs text-slate-400 font-medium">Status: <strong class="text-amber-400">Pending</strong></span>
+                        <button onclick="toggleDose('am')" id="amBtn" class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs px-4 py-2.5 rounded-xl transition-all shadow-lg shadow-cyan-500/20 flex items-center gap-2">
+                            <i class="fa-solid fa-check"></i> Mark AM Done
+                        </button>
+                    </div>
+                </div>
+
+                <!-- PM Routine Card -->
+                <div class="bg-brand-card border border-brand-border rounded-2xl p-6 shadow-lg flex flex-col justify-between relative overflow-hidden">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold">
+                                    <i class="fa-solid fa-moon text-lg"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-white text-base">Night Regimen</h3>
+                                    <p class="text-xs text-slate-400">Internal Nutrition & Repair</p>
+                                </div>
+                            </div>
+                            <span class="text-xs bg-slate-800 text-slate-400 px-2.5 py-1 rounded-full border border-slate-700">10:00 PM</span>
+                        </div>
+
+                        <div class="bg-brand-sub/60 border border-brand-border/60 rounded-xl p-4 space-y-3">
+                            <div class="flex items-start justify-between gap-3">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+                                        <i class="fa-solid fa-tablets text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-semibold text-sm text-slate-100">Biotin Hair Gummies</div>
+                                        <div class="text-xs text-slate-400">1 Chewable Gummy post-dinner</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-[11px] text-slate-400 bg-slate-900/50 p-2 rounded-lg border border-slate-800 flex items-center gap-2">
+                                <i class="fa-solid fa-circle-info text-cyan-400"></i> Provides Zinc, Biotin & Iron to support hair root strength.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 pt-4 border-t border-brand-border flex items-center justify-between">
+                        <span id="pmStatusText" class="text-xs text-slate-400 font-medium">Status: <strong class="text-amber-400">Pending</strong></span>
+                        <button onclick="toggleDose('pm')" id="pmBtn" class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs px-4 py-2.5 rounded-xl transition-all shadow-lg shadow-cyan-500/20 flex items-center gap-2">
+                            <i class="fa-solid fa-check"></i> Mark PM Done
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Live Adherence Calendar Grid -->
+                <div class="bg-brand-card border border-brand-border rounded-2xl p-6 shadow-lg space-y-4">
+                    <div class="flex items-center justify-between">
+                        <h3 class="font-bold text-white text-base flex items-center gap-2">
+                            <i class="fa-solid fa-calendar-days text-cyan-400"></i> November Habit Log
+                        </h3>
+                        <span class="text-xs font-semibold text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20">
+                            28/30 Days Logged
+                        </span>
+                    </div>
+
+                    <p class="text-xs text-slate-400">Consistent daily entries maintain your streak and maximize follicle activation.</p>
+
+                    <!-- Mini Calendar Grid Simulator -->
+                    <div class="grid grid-cols-7 gap-2 pt-2">
+                        <!-- Day labels -->
+                        <div class="text-center text-[10px] font-bold text-slate-500">M</div>
+                        <div class="text-center text-[10px] font-bold text-slate-500">T</div>
+                        <div class="text-center text-[10px] font-bold text-slate-500">W</div>
+                        <div class="text-center text-[10px] font-bold text-slate-500">T</div>
+                        <div class="text-center text-[10px] font-bold text-slate-500">F</div>
+                        <div class="text-center text-[10px] font-bold text-slate-500">S</div>
+                        <div class="text-center text-[10px] font-bold text-slate-500">S</div>
+
+                        <!-- Days -->
+                        <script>
+                            for(let i=1; i<=28; i++) {
+                                let statusClass = i === 12 || i === 19 ? 'bg-rose-500/20 text-rose-400 border-rose-500/30' : 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30';
+                                document.write(`<div class="aspect-square rounded-lg border ${statusClass} flex items-center justify-center text-xs font-bold shadow-sm">${i}</div>`);
+                            }
+                        </script>
+                        <!-- Today -->
+                        <div id="todayCalBox" class="aspect-square rounded-lg border border-amber-500/50 bg-amber-500/10 text-amber-400 flex items-center justify-center text-xs font-bold animate-pulse">
+                            29
+                        </div>
+                        <div class="aspect-square rounded-lg border border-slate-800 bg-slate-900/50 text-slate-600 flex items-center justify-center text-xs">
+                            30
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-around pt-2 text-[11px] text-slate-400 border-t border-brand-border">
+                        <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span> Both Doses</span>
+                        <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-rose-500 inline-block"></span> Missed</span>
+                        <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-amber-400 inline-block"></span> Today</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 2: VISUAL PROGRESS TIMELINE & AI SCALP SCANNER -->
+        <section id="section-timeline" class="tab-content hidden space-y-8">
+            
+            <!-- Before / After Visual Slider Tool -->
+            <div class="bg-brand-card border border-brand-border rounded-2xl p-6 md:p-8 shadow-xl space-y-6">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div>
+                        <span class="text-xs text-cyan-400 font-bold tracking-wider uppercase">Interactive Hair Density Simulator</span>
+                        <h2 class="text-xl font-bold text-white mt-1">Month-by-Month Visual Hair Density Progress</h2>
+                        <p class="text-xs text-slate-400 mt-0.5">Drag the divider to compare baseline Day 1 scalp vs Month 3 follicle activation.</p>
+                    </div>
+
+                    <!-- Month Switch Buttons -->
+                    <div class="flex items-center gap-1.5 bg-brand-sub p-1 rounded-xl border border-brand-border">
+                        <button onclick="setComparisonMonth(1)" id="btn-m1" class="month-btn text-xs font-semibold px-3 py-1.5 rounded-lg text-slate-400 hover:text-white">Month 1</button>
+                        <button onclick="setComparisonMonth(3)" id="btn-m3" class="month-btn active text-xs font-semibold px-3 py-1.5 rounded-lg bg-cyan-500 text-slate-950">Month 3</button>
+                        <button onclick="setComparisonMonth(6)" id="btn-m6" class="month-btn text-xs font-semibold px-3 py-1.5 rounded-lg text-slate-400 hover:text-white">Month 6</button>
+                    </div>
+                </div>
+
+                <!-- Interactive Comparison Container -->
+                <div class="max-w-3xl mx-auto">
+                    <div id="comparisonBox" class="img-slider-container w-full aspect-[16/9] sm:aspect-[2/1] rounded-2xl border border-brand-border shadow-2xl relative">
+                        <!-- After Image (Underneath) -->
+                        <img id="imgAfter" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1200&q=80" alt="Month 3 Progress" class="w-full h-full object-cover">
+                        <span class="absolute top-4 right-4 bg-emerald-500/90 text-slate-950 font-extrabold text-xs px-3 py-1 rounded-full shadow-md z-10">
+                            <i class="fa-solid fa-sparkles"></i> <span id="afterLabel">Month 3 Result (Dense)</span>
+                        </span>
+
+                        <!-- Before Image (Overlay clipped) -->
+                        <div id="sliderOverlay" class="img-slider-overlay w-1/2 border-r-2 border-cyan-400">
+                            <img id="imgBefore" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=1200&q=80" alt="Day 1 Baseline" class="w-full h-full object-cover max-w-none" style="width: 100%;">
+                            <span class="absolute top-4 left-4 bg-slate-900/90 text-slate-300 font-bold text-xs px-3 py-1 rounded-full border border-slate-700 shadow-md">
+                                Day 1 Baseline
+                            </span>
+                        </div>
+
+                        <!-- Drag Handle -->
+                        <input type="range" min="0" max="100" value="50" id="sliderInput" class="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-30" oninput="moveSlider(this.value)">
+                    </div>
+                    <div class="flex items-center justify-between text-xs text-slate-400 mt-2 px-1">
+                        <span>← Day 1 Crown View</span>
+                        <span class="text-cyan-400 font-medium"><i class="fa-solid fa-arrows-left-right"></i> Slide to compare density</span>
+                        <span class="text-emerald-400 font-medium">Month 3 Projected Hair Fill →</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Scalp Scanner Simulator Section -->
+            <div id="ai-scanner" class="bg-brand-card border border-brand-border rounded-2xl p-6 md:p-8 shadow-xl space-y-6">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div>
+                        <div class="inline-flex items-center gap-1.5 text-xs text-emerald-400 font-bold">
+                            <i class="fa-solid fa-microscope"></i> Computer Vision AI Diagnostics
+                        </div>
+                        <h2 class="text-xl font-bold text-white mt-1">AI Scalp Follicle Analyzer</h2>
+                        <p class="text-xs text-slate-400">Upload or capture a close-up scalp photo to analyze microscopic hair shaft counts and scalp coverage.</p>
+                    </div>
+
+                    <button onclick="runScalpScan()" id="scanBtn" class="bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-slate-950 font-bold px-6 py-3 rounded-xl transition-all shadow-lg shadow-emerald-500/20 flex items-center justify-center gap-2 text-sm">
+                        <i class="fa-solid fa-camera-retro"></i> Run New Scalp Scan
+                    </button>
+                </div>
+
+                <!-- Diagnostic Results Display Card -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
+                    <!-- Metric 1 -->
+                    <div class="bg-brand-sub/60 border border-brand-border rounded-xl p-5 text-center space-y-2 relative overflow-hidden">
+                        <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Hair Shaft Density Index</div>
+                        <div class="text-3xl font-extrabold text-cyan-400" id="scanMetric1">+14.2%</div>
+                        <p class="text-[11px] text-emerald-400 font-medium">vs Day 1 baseline (+18 strands/cm²)</p>
+                    </div>
+
+                    <!-- Metric 2 -->
+                    <div class="bg-brand-sub/60 border border-brand-border rounded-xl p-5 text-center space-y-2 relative overflow-hidden">
+                        <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Anagen Follicle Health Score</div>
+                        <div class="text-3xl font-extrabold text-emerald-400" id="scanMetric2">88 / 100</div>
+                        <p class="text-[11px] text-slate-400">Optimal micro-circulation detected</p>
+                    </div>
+
+                    <!-- Metric 3 -->
+                    <div class="bg-brand-sub/60 border border-brand-border rounded-xl p-5 text-center space-y-2 relative overflow-hidden">
+                        <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Estimated Visible Growth</div>
+                        <div class="text-3xl font-extrabold text-amber-400" id="scanMetric3">In 24 Days</div>
+                        <p class="text-[11px] text-slate-400">Under-surface follicle thickener active</p>
+                    </div>
+                </div>
+
+                <!-- AI Verdict Note -->
+                <div class="bg-blue-950/40 border border-blue-900/50 rounded-xl p-4 flex items-start gap-3">
+                    <i class="fa-solid fa-robot text-cyan-400 text-lg mt-0.5"></i>
+                    <div class="text-xs text-slate-300 leading-relaxed">
+                        <strong class="text-cyan-400 font-semibold">AI Regimen Insight:</strong> Your daily application of 1ml Man Matters Hair Tonic is showing visible results at the root level. Early-stage fine baby hairs (vellus hair) are transitioning into thicker terminal hair. Keep your 14-day streak consistent!
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: ROUTINE REMINDERS & HABIT NUDGE SYSTEM -->
+        <section id="section-reminders" class="tab-content hidden space-y-6">
+            <div class="bg-brand-card border border-brand-border rounded-2xl p-6 md:p-8 shadow-xl space-y-6">
+                <div>
+                    <h2 class="text-xl font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-bell text-cyan-400"></i> Smart Routine Reminders & Nudge Scheduler
+                    </h2>
+                    <p class="text-xs text-slate-400 mt-1">
+                        Never forget your daily dose. Set contextual morning & evening triggers delivered straight to your phone or browser.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <!-- Alert Channels Card -->
+                    <div class="bg-brand-sub/50 border border-brand-border rounded-xl p-5 space-y-4">
+                        <h3 class="font-bold text-sm text-slate-200 border-b border-brand-border pb-3">Notification Channels</h3>
+                        
+                        <!-- Toggle 1 -->
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <i class="fa-brands fa-whatsapp text-emerald-400 text-lg"></i>
+                                <div>
+                                    <div class="text-xs font-semibold text-white">WhatsApp Morning Nudge</div>
+                                    <div class="text-[11px] text-slate-400">Daily alert at 8:00 AM</div>
+                                </div>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" checked class="sr-only peer" onchange="toast('WhatsApp reminder updated!')">
+                                <div class="w-11 h-6 bg-slate-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-500"></div>
+                            </label>
+                        </div>
+
+                        <!-- Toggle 2 -->
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <i class="fa-solid fa-mobile-screen-button text-cyan-400 text-lg"></i>
+                                <div>
+                                    <div class="text-xs font-semibold text-white">Browser Push Reminders</div>
+                                    <div class="text-[11px] text-slate-400">Pop-up alert when on desktop</div>
+                                </div>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" checked class="sr-only peer" onchange="toast('Browser notifications enabled!')">
+                                <div class="w-11 h-6 bg-slate-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-cyan-500"></div>
+                            </label>
+                        </div>
+
+                        <!-- Toggle 3 -->
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <i class="fa-solid fa-comment-sms text-amber-400 text-lg"></i>
+                                <div>
+                                    <div class="text-xs font-semibold text-white">SMS Refill Alerts</div>
+                                    <div class="text-[11px] text-slate-400">Nudge when bottle has 5 days left</div>
+                                </div>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" class="sr-only peer" onchange="toast('SMS refill alerts updated!')">
+                                <div class="w-11 h-6 bg-slate-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-amber-500"></div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Time Customizer Card -->
+                    <div class="bg-brand-sub/50 border border-brand-border rounded-xl p-5 space-y-4">
+                        <h3 class="font-bold text-sm text-slate-200 border-b border-brand-border pb-3">Customize Alarm Times</h3>
+                        
+                        <div class="space-y-3">
+                            <div>
+                                <label class="text-xs font-medium text-slate-300 block mb-1">Morning Hair Tonic Time</label>
+                                <input type="time" value="08:00" class="w-full bg-slate-900 border border-brand-border rounded-lg px-3 py-2 text-xs text-cyan-400 font-bold focus:outline-none focus:border-cyan-500">
+                            </div>
+                            <div>
+                                <label class="text-xs font-medium text-slate-300 block mb-1">Evening Biotin Gummy Time</label>
+                                <input type="time" value="22:00" class="w-full bg-slate-900 border border-brand-border rounded-lg px-3 py-2 text-xs text-indigo-400 font-bold focus:outline-none focus:border-indigo-500">
+                            </div>
+                            <button onclick="toast('Reminder times saved successfully!')" class="w-full bg-brand-border hover:bg-slate-700 text-xs font-bold text-slate-200 py-2.5 rounded-lg transition-all">
+                                Save Preferred Times
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: DOCTOR CONSULTATION & FAQ -->
+        <section id="section-support" class="tab-content hidden space-y-6">
+            
+            <!-- Doctor Call CTA Card -->
+            <div class="bg-gradient-to-r from-blue-950 to-indigo-950 border border-blue-900/50 rounded-2xl p-6 shadow-xl flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-center gap-4">
+                    <div class="w-14 h-14 rounded-2xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-2xl border border-cyan-500/30 shrink-0">
+                        <i class="fa-solid fa-user-doctor"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-white text-base">Have Questions About Your Hair Growth Pace?</h3>
+                        <p class="text-xs text-slate-300 mt-1 max-w-xl">
+                            Free tele-consultations are included with your Man Matters subscription. Speak with a trichologist to evaluate your scalp progress anytime.
+                        </p>
+                    </div>
+                </div>
+                <button onclick="alert('Doctor Appointment Booking: Free slot confirmed for tomorrow at 4:00 PM!')" class="w-full md:w-auto bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs px-6 py-3 rounded-xl transition-all shadow-lg shadow-cyan-500/20 whitespace-nowrap">
+                    Book Free Tele-Consult
+                </button>
+            </div>
+
+            <!-- Interactive Accordion FAQ -->
+            <div class="bg-brand-card border border-brand-border rounded-2xl p-6 md:p-8 shadow-xl space-y-4">
+                <h3 class="font-bold text-white text-lg flex items-center gap-2">
+                    <i class="fa-solid fa-circle-question text-cyan-400"></i> Frequently Asked Questions & Guidance
+                </h3>
+
+                <div class="space-y-3">
+                    <!-- FAQ 1 -->
+                    <details class="group bg-brand-sub/50 border border-brand-border rounded-xl p-4 [&_summary::-webkit-details-marker]:hidden cursor-pointer">
+                        <summary class="flex items-center justify-between font-semibold text-xs text-slate-200">
+                            <span>When can I expect visible hair density improvements?</span>
+                            <span class="transition group-open:-rotate-180"><i class="fa-solid fa-chevron-down text-cyan-400"></i></span>
+                        </summary>
+                        <p class="text-xs text-slate-400 mt-3 leading-relaxed border-t border-brand-border/60 pt-3">
+                            Hair growth cycles take time. During Month 1, active ingredients work beneath the scalp to reactivate dormant hair follicles. Minor shedding may occur as weak hairs make room for strong new roots. By Month 3, scalp coverage increases visibly.
+                        </p>
+                    </details>
+
+                    <!-- FAQ 2 -->
+                    <details class="group bg-brand-sub/50 border border-brand-border rounded-xl p-4 [&_summary::-webkit-details-marker]:hidden cursor-pointer">
+                        <summary class="flex items-center justify-between font-semibold text-xs text-slate-200">
+                            <span>What happens if I forget to apply my tonic for a day or two?</span>
+                            <span class="transition group-open:-rotate-180"><i class="fa-solid fa-chevron-down text-cyan-400"></i></span>
+                        </summary>
+                        <p class="text-xs text-slate-400 mt-3 leading-relaxed border-t border-brand-border/60 pt-3">
+                            Don't stress! Simply resume your normal dose the next morning. Do not double your dose. Using your Regimen+ app reminders will help keep your habit streak consistent over 90 days.
+                        </p>
+                    </details>
+
+                    <!-- FAQ 3 -->
+                    <details class="group bg-brand-sub/50 border border-brand-border rounded-xl p-4 [&_summary::-webkit-details-marker]:hidden cursor-pointer">
+                        <summary class="flex items-center justify-between font-semibold text-xs text-slate-200">
+                            <span>How should I apply the Man Matters Hair Tonic for best absorption?</span>
+                            <span class="transition group-open:-rotate-180"><i class="fa-solid fa-chevron-down text-cyan-400"></i></span>
+                        </summary>
+                        <p class="text-xs text-slate-400 mt-3 leading-relaxed border-t border-brand-border/60 pt-3">
+                            Ensure your scalp is clean and dry. Spray 1ml directly onto thinning areas. Gently massage with your fingertips for 60 seconds to enhance blood circulation. Leave it on for at least 3 to 4 hours.
+                        </p>
+                    </details>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-brand-card border-t border-brand-border py-6 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+            <div class="flex items-center gap-2">
+                <span class="font-bold text-slate-300">Man Matters</span> • Mosaic Wellness Fellowship 2027 Challenge
+            </div>
+            <div>
+                Built for routine adherence & progress tracking • Powered by RegimenPlus AI
+            </div>
+        </div>
+    </footer>
+
+    <!-- TOAST NOTIFICATION POPUP CONTAINER -->
+    <div id="toastBox" class="fixed bottom-5 right-5 z-50 bg-cyan-500 text-slate-950 font-bold text-xs px-4 py-3 rounded-xl shadow-2xl transition-all duration-300 transform translate-y-20 opacity-0 flex items-center gap-2">
+        <i class="fa-solid fa-circle-check"></i> <span id="toastMsg">Notification Toast</span>
+    </div>
+
+    <!-- INTERACTIVE JAVASCRIPT LOGIC -->
+    <script>
+        // State management variables
+        let amCompleted = false;
+        let pmCompleted = false;
+        let streak = 14;
+
+        // Tab Switching Logic
+        function switchTab(tabName) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            // Remove active classes from buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-cyan-500/10', 'text-cyan-400', 'border', 'border-cyan-500/30');
+                btn.classList.add('text-slate-400');
+            });
+
+            // Show selected content & set active styling
+            document.getElementById(`section-${tabName}`).classList.remove('hidden');
+            const activeBtn = document.getElementById(`tab-${tabName}`);
+            activeBtn.classList.remove('text-slate-400');
+            activeBtn.classList.add('bg-cyan-500/10', 'text-cyan-400', 'border', 'border-cyan-500/30');
+        }
+
+        // Scroll to Section Helper
+        function scrollToSection(sectionId) {
+            if (sectionId === 'routine-tracker') switchTab('routine');
+            if (sectionId === 'ai-scanner') switchTab('timeline');
+        }
+
+        // Routine Dose Toggle Handler
+        function toggleDose(type) {
+            if (type === 'am') {
+                amCompleted = !amCompleted;
+                const btn = document.getElementById('amBtn');
+                const txt = document.getElementById('amStatusText');
+                if (amCompleted) {
+                    btn.className = "bg-emerald-500 text-slate-950 font-bold text-xs px-4 py-2.5 rounded-xl transition-all shadow-lg flex items-center gap-2";
+                    btn.innerHTML = `<i class="fa-solid fa-circle-check"></i> AM Done!`;
+                    txt.innerHTML = `Status: <strong class="text-emerald-400">Completed (8:05 AM)</strong>`;
+                    toast('AM Hair Tonic dose recorded!');
+                } else {
+                    btn.className = "bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs px-4 py-2.5 rounded-xl transition-all shadow-lg shadow-cyan-500/20 flex items-center gap-2";
+                    btn.innerHTML = `<i class="fa-solid fa-check"></i> Mark AM Done`;
+                    txt.innerHTML = `Status: <strong class="text-amber-400">Pending</strong>`;
+                }
+            } else if (type === 'pm') {
+                pmCompleted = !pmCompleted;
+                const btn = document.getElementById('pmBtn');
+                const txt = document.getElementById('pmStatusText');
+                if (pmCompleted) {
+                    btn.className = "bg-emerald-500 text-slate-950 font-bold text-xs px-4 py-2.5 rounded-xl transition-all shadow-lg flex items-center gap-2";
+                    btn.innerHTML = `<i class="fa-solid fa-circle-check"></i> PM Done!`;
+                    txt.innerHTML = `Status: <strong class="text-emerald-400">Completed</strong>`;
+                    toast('PM Biotin Gummy dose recorded!');
+                } else {
+                    btn.className = "bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs px-4 py-2.5 rounded-xl transition-all shadow-lg shadow-cyan-500/20 flex items-center gap-2";
+                    btn.innerHTML = `<i class="fa-solid fa-check"></i> Mark PM Done`;
+                    txt.innerHTML = `Status: <strong class="text-amber-400">Pending</strong>`;
+                }
+            }
+
+            // Update Today's Calendar Box
+            const todayBox = document.getElementById('todayCalBox');
+            if (amCompleted || pmCompleted) {
+                todayBox.className = "aspect-square rounded-lg border border-emerald-500/50 bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xs font-bold";
+            } else {
+                todayBox.className = "aspect-square rounded-lg border border-amber-500/50 bg-amber-500/10 text-amber-400 flex items-center justify-center text-xs font-bold animate-pulse";
+            }
+        }
+
+        // Image Slider Logic
+        function moveSlider(val) {
+            document.getElementById('sliderOverlay').style.width = val + '%';
+        }
+
+        function setComparisonMonth(month) {
+            document.querySelectorAll('.month-btn').forEach(btn => {
+                btn.className = "month-btn text-xs font-semibold px-3 py-1.5 rounded-lg text-slate-400 hover:text-white";
+            });
+            const selectedBtn = document.getElementById(`btn-m${month}`);
+            selectedBtn.className = "month-btn active text-xs font-semibold px-3 py-1.5 rounded-lg bg-cyan-500 text-slate-950";
+
+            const afterImg = document.getElementById('imgAfter');
+            const afterLabel = document.getElementById('afterLabel');
+
+            if (month === 1) {
+                afterImg.src = "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=1200&q=80";
+                afterLabel.innerText = "Month 1 Result (Early Activation)";
+            } else if (month === 3) {
+                afterImg.src = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1200&q=80";
+                afterLabel.innerText = "Month 3 Result (Dense)";
+            } else if (month === 6) {
+                afterImg.src = "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=1200&q=80";
+                afterLabel.innerText = "Month 6 Result (Full Restoration)";
+            }
+        }
+
+        // Scalp Scan Simulator
+        function runScalpScan() {
+            const btn = document.getElementById('scanBtn');
+            btn.disabled = true;
+            btn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> Analyzing Scalp Photos...`;
+
+            setTimeout(() => {
+                btn.disabled = false;
+                btn.innerHTML = `<i class="fa-solid fa-camera-retro"></i> Run New Scalp Scan`;
+                
+                // Randomize small micro-growth stats to simulate AI output
+                const density = (12 + Math.random() * 4).toFixed(1);
+                const health = Math.floor(85 + Math.random() * 8);
+
+                document.getElementById('scanMetric1').innerText = `+${density}%`;
+                document.getElementById('scanMetric2').innerText = `${health} / 100`;
+                
+                toast('Scalp scan complete! Micro-growth verified.');
+            }, 1500);
+        }
+
+        // Toast Helper
+        function toast(msg) {
+            const box = document.getElementById('toastBox');
+            document.getElementById('toastMsg').innerText = msg;
+            box.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                box.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
